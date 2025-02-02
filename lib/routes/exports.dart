@@ -1,0 +1,9 @@
+export 'package:get/get.dart';
+export 'package:coup_kart/views/auth/email_pass_screen.dart';
+export 'package:coup_kart/views/auth/otp_verification_screen.dart';
+export 'package:coup_kart/views/auth/reset_pass_screen.dart';
+export 'package:coup_kart/views/auth/sign_in_screen.dart';
+export 'package:coup_kart/views/auth/sign_up_screen.dart';
+export 'package:coup_kart/views/bottom%20nav%20bar/custom_nav_bar.dart';
+export 'package:coup_kart/views/splash%20screen/splash_screen.dart';
+export 'package:coup_kart/views/splash%20screen/onboarding_screen.dart';
