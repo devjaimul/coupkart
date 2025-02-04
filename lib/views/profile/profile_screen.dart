@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
 
 
     return Scaffold(
-
+appBar: AppBar(),
       body:SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

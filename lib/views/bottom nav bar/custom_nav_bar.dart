@@ -1,6 +1,7 @@
 import 'package:coup_kart/global_widgets/custom_text.dart';
 import 'package:coup_kart/utils/app_colors.dart';
 import 'package:coup_kart/utils/app_icons.dart';
+import 'package:coup_kart/views/home/home_screen.dart';
 import 'package:coup_kart/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    CircularProgressIndicator(),
+    HomeScreen(),
     CircularProgressIndicator(),
     CircularProgressIndicator(),
     ProfileScreen(),
@@ -52,14 +53,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          backgroundColor: Colors.transparent, // Transparent background to show the container color
+          backgroundColor: Colors.transparent,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.primaryColor, // Color of selected item
-          unselectedItemColor: Colors.grey, // Color of unselected items
+          selectedItemColor: AppColors.primaryColor,
+          unselectedItemColor: Colors.grey,
           selectedLabelStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
-          showSelectedLabels: false, // Hide the text labels
-          showUnselectedLabels: false, // Hide the text labels
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           items: [
             _buildNavItem(
               index: 0,
@@ -98,30 +99,23 @@ class _CustomNavBarState extends State<CustomNavBar> {
     required String label,
   }) {
     return BottomNavigationBarItem(
-      icon: Container(
+      icon: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 7.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              _selectedIndex == index ? selectedIcon : icon,
+              height: 20.h,
+                width: 20.w,
+            ),
 
-        decoration: BoxDecoration(
-          color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 7.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                _selectedIndex == index ? selectedIcon : icon,
-                height: 20.h,
-                  width: 20.w,
+            if (_selectedIndex == index)
+              Padding(
+                padding:  EdgeInsets.only(top: 2.h),
+                child: CustomTextTwo(text: label,color: AppColors.primaryColor,),
               ),
-
-              if (_selectedIndex == index)
-                Padding(
-                  padding:  EdgeInsets.only(top: 2.h),
-                  child: CustomTextTwo(text: label,color: Colors.white,),
-                ),
-            ],
-          ),
+          ],
         ),
       ),
       label: "",
