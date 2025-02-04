@@ -1,3 +1,4 @@
+import 'package:coup_kart/utils/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:coup_kart/global_widgets/app_logo.dart';
 import 'package:coup_kart/global_widgets/custom_text.dart';
@@ -12,6 +13,8 @@ class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController passTEController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final sizeH = MediaQuery.of(context).size.height;
@@ -27,13 +30,15 @@ class SignInScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(sizeH * .016),
-              child: Column(
-                spacing: sizeH * .02,
-                children: [
-                  CustomTextOne(text: "Sign In"),
-                  CustomTextTwo(
-                      text: " Welcome Back! Please enter your details."),
-                  CustomTextField(
+              child: Form(
+                key: formKey, // Linking the form to the key
+                child: Column(
+                  spacing: sizeH * .02,
+                  children: [
+                    CustomTextOne(text: "Sign In"),
+                    CustomTextTwo(
+                        text: "Welcome Back! Please enter your details."),
+                    CustomTextField(
                       controller: emailTEController,
                       hintText: "Enter E-mail",
                       isEmail: true,
@@ -43,8 +48,18 @@ class SignInScreen extends StatelessWidget {
                           AppIcons.email,
                           height: 18.h,
                         ),
-                      )),
-                  CustomTextField(
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Email cannot be empty";
+                        }
+                        if (!AppConstants.emailValidate.hasMatch(value)) {
+                          return "Invalid email address";
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextField(
                       controller: passTEController,
                       hintText: "Enter Password",
                       isPassword: true,
@@ -54,48 +69,71 @@ class SignInScreen extends StatelessWidget {
                           AppIcons.password,
                           height: 18.h,
                         ),
-                      )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Obx(() => Row(
-                            children: [
-                              Checkbox(
-                                value: rememberMe.value,
-                                onChanged: (value) {
-                                  rememberMe.value = value!;
-                                },
-                              ),
-                              const CustomTextTwo(text: "Remember Me"),
-                            ],
-                          )),
-                      StyleTextButton(
-                        text: "Forget Password?",
-                        onTap: () {
-                          Get.toNamed(AppRoutes.emailPassScreen);
-                        },
-                        textDecoration: TextDecoration.none,
                       ),
-                    ],
-                  ),
-                  CustomTextButton(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (value.length < 8) {
+                          return "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters (e.g., Abc123@!)";
+                        }
+                        if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
+                            .hasMatch(value)) {
+                          return "Password must contain letters, numbers, uppercase, and special characters";
+                        }
+                        return null;
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(() => Row(
+                          children: [
+                            Checkbox(
+                              value: rememberMe.value,
+                              onChanged: (value) {
+                                rememberMe.value = value!;
+                              },
+                            ),
+                            const CustomTextTwo(text: "Remember Me"),
+                          ],
+                        )),
+                        StyleTextButton(
+                          text: "Forget Password?",
+                          onTap: () {
+                            Get.toNamed(AppRoutes.emailPassScreen);
+                          },
+                          textDecoration: TextDecoration.none,
+                        ),
+                      ],
+                    ),
+                    CustomTextButton(
                       text: "Login",
                       onTap: () {
-                        Get.offAllNamed(AppRoutes.customNavBar);
-                      }),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CustomTextTwo(text: "Don’t have an account?"),
-                      StyleTextButton(
-                        text: "Sign Up",
-                        onTap: () {
-                          Get.toNamed(AppRoutes.signUpScreen);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                        if (formKey.currentState?.validate() ?? false) {
+
+                          final email = emailTEController.text.trim();
+                          final password = passTEController.text.trim();
+
+
+                          Get.offAllNamed(AppRoutes.customNavBar);
+                        }
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CustomTextTwo(text: "Don’t have an account?"),
+                        StyleTextButton(
+                          text: "Sign Up",
+                          onTap: () {
+                            Get.toNamed(AppRoutes.signUpScreen);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -104,3 +142,4 @@ class SignInScreen extends StatelessWidget {
     );
   }
 }
+

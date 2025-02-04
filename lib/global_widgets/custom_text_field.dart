@@ -72,7 +72,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       textInputAction: TextInputAction.next,
-      //autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (value) {
         // Prevent null errors when text is empty
         if (widget.onChanged != null) {
