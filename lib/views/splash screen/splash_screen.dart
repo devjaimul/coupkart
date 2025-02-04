@@ -1,7 +1,9 @@
-import 'dart:async'; // Correct import for Timer
+import 'dart:async';
 import 'package:coup_kart/routes/app_routes.dart';
 import 'package:coup_kart/utils/app_colors.dart';
+import 'package:coup_kart/utils/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 
@@ -24,12 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final sizeH = MediaQuery.of(context).size.height;
-    final sizeW = MediaQuery.of(context).size.width;
+
     return  Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Image.asset("assets/images/app_logo.png",height:sizeH* .2,width:sizeW* 1,),
+        child:SvgPicture.asset(
+          AppImages.appLogo,
+        )
       ),
     );
   }

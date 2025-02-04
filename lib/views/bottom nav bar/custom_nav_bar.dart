@@ -15,7 +15,6 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar> {
   int _selectedIndex = 0;
 
-  // List of screens for navigation (placeholders)
   final List<Widget> _screens = [
     CircularProgressIndicator(),
     CircularProgressIndicator(),
@@ -115,17 +114,17 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 height: 20.h,
                   width: 20.w,
               ),
-              // Only display the label when the item is selected
+
               if (_selectedIndex == index)
                 Padding(
-                  padding:  EdgeInsets.only(top: 2.h), // Add space between icon and text
-                  child: CustomTextTwo(text: label,color: Colors.white,), // Show the label
+                  padding:  EdgeInsets.only(top: 2.h),
+                  child: CustomTextTwo(text: label,color: Colors.white,),
                 ),
             ],
           ),
         ),
       ),
-      label: "", // Empty label to hide the default label
+      label: "",
     );
   }
 }

@@ -79,10 +79,11 @@ class OnboardingScreen extends StatelessWidget {
       body: IntroductionScreen(
         pages: getPages(),
         onDone: () {
-          Get.offAllNamed(AppRoutes.signUpScreen);
+          Get.offAllNamed(AppRoutes.customNavBar);
+
         },
         onSkip: () {
-       Get.offAllNamed(AppRoutes.signUpScreen);
+       Get.offAllNamed(AppRoutes.customNavBar);
         },
         showSkipButton: true,
         skip: const Text("Skip"),

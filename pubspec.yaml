@@ -46,6 +46,7 @@ dependencies:
   introduction_screen: ^3.1.14
   device_preview: ^1.2.0
   permission_handler: ^11.3.1
+  flutter_svg: ^2.0.17
 
 
 dev_dependencies:
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/svg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

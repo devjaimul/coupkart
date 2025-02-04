@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/app_images.dart';
 
 class AppLogo extends StatelessWidget {
@@ -17,16 +18,18 @@ class AppLogo extends StatelessWidget {
       height: sizeH * 0.36,
       width: sizeW * 1,
       decoration: BoxDecoration(
-        color: const Color(0xFF53A6A6), // Background color from design
+        color: const Color(0xFF53A6A6),
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40)),
       ),
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: Image.asset(
-          img ?? AppImages.appLogo,
-          height: height ?? sizeH * .2,
+        child: Padding(
+          padding:  EdgeInsets.symmetric(vertical: sizeH*.1),
+          child: SvgPicture.asset(
+            img??AppImages.appLogo,
 
-        ),
+          ),
+        )
       ),
     );
   }
