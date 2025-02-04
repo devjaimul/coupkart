@@ -1,22 +1,17 @@
 import 'package:coup_kart/global_widgets/app_logo.dart';
 import 'package:coup_kart/global_widgets/custom_text_button.dart';
 import 'package:coup_kart/global_widgets/custom_text_field.dart';
-import 'package:coup_kart/routes/app_routes.dart';
 import 'package:coup_kart/routes/exports.dart';
 import 'package:coup_kart/utils/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
 import '../../global_widgets/custom_text.dart';
 
 class EmailPassScreen extends StatelessWidget {
-  const EmailPassScreen({super.key});
-
+   EmailPassScreen({super.key});
+ final TextEditingController emailTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailTEController = TextEditingController();
-
     final sizeH = MediaQuery.of(context).size.height;
 
     return Scaffold(

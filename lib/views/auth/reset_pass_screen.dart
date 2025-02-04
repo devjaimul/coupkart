@@ -9,12 +9,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ResetPassScreen extends StatelessWidget {
-  const ResetPassScreen({super.key});
-
+   ResetPassScreen({super.key});
+  final TextEditingController passTEController = TextEditingController();
+ final  TextEditingController rePassTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController passTEController = TextEditingController();
-    TextEditingController rePassTEController = TextEditingController();
+
     final sizeH = MediaQuery.of(context).size.height;
 
 

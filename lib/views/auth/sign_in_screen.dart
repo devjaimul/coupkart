@@ -9,12 +9,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
-
+  SignInScreen({super.key});
+  final TextEditingController emailTEController = TextEditingController();
+  final TextEditingController passTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailTEController = TextEditingController();
-    TextEditingController passTEController = TextEditingController();
     final sizeH = MediaQuery.of(context).size.height;
     RxBool rememberMe = false.obs;
 
@@ -32,7 +31,8 @@ class SignInScreen extends StatelessWidget {
                 spacing: sizeH * .02,
                 children: [
                   CustomTextOne(text: "Sign In"),
-                  CustomTextTwo(text: " Welcome Back! Please enter your details."),
+                  CustomTextTwo(
+                      text: " Welcome Back! Please enter your details."),
                   CustomTextField(
                       controller: emailTEController,
                       hintText: "Enter E-mail",
@@ -59,17 +59,16 @@ class SignInScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Obx(() => Row(
-                        children: [
-                          Checkbox(
-
-                            value: rememberMe.value,
-                            onChanged: (value) {
-                              rememberMe.value = value!;
-                            },
-                          ),
-                          const CustomTextTwo(text: "Remember Me"),
-                        ],
-                      )),
+                            children: [
+                              Checkbox(
+                                value: rememberMe.value,
+                                onChanged: (value) {
+                                  rememberMe.value = value!;
+                                },
+                              ),
+                              const CustomTextTwo(text: "Remember Me"),
+                            ],
+                          )),
                       StyleTextButton(
                         text: "Forget Password?",
                         onTap: () {

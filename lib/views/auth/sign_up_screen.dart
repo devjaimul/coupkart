@@ -12,12 +12,12 @@ import 'package:get/get.dart';
 import '../../global_widgets/custom_text_button.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+   SignUpScreen({super.key});
+ final TextEditingController nameTEController = TextEditingController();
+  final TextEditingController emailTEController = TextEditingController();
+  final TextEditingController passTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameTEController = TextEditingController();
-    TextEditingController emailTEController = TextEditingController();
-    TextEditingController passTEController = TextEditingController();
     final sizeH = MediaQuery.of(context).size.height;
     RxBool rememberMe = false.obs;
 
