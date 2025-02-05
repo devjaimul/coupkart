@@ -1,6 +1,9 @@
 import 'package:coup_kart/global_widgets/custom_text.dart';
 import 'package:coup_kart/utils/app_colors.dart';
 import 'package:coup_kart/utils/app_icons.dart';
+import 'package:coup_kart/views/coupon/coupon_screen.dart';
+import 'package:coup_kart/views/explore/explore_screen.dart';
+import 'package:coup_kart/views/favourite/favourite_screen.dart';
 import 'package:coup_kart/views/home/home_screen.dart';
 import 'package:coup_kart/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +21,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    CircularProgressIndicator(),
-    CircularProgressIndicator(),
+    ExploreScreen(),
+    CouponScreen(),
+    FavouriteScreen(),
     ProfileScreen(),
   ];
 
@@ -76,12 +80,18 @@ class _CustomNavBarState extends State<CustomNavBar> {
             ),
             _buildNavItem(
               index: 2,
+              icon: AppIcons.coupon,
+              selectedIcon: AppIcons.couponFill,
+              label: "Coupon",
+            ),
+            _buildNavItem(
+              index: 3,
               icon: AppIcons.favourite,
               selectedIcon: AppIcons.favouriteFill,
               label: "Favourite",
             ),
             _buildNavItem(
-              index: 3,
+              index: 4,
               icon: AppIcons.profile,
               selectedIcon: AppIcons.profileFill,
               label: "Profile",
@@ -99,24 +109,18 @@ class _CustomNavBarState extends State<CustomNavBar> {
     required String label,
   }) {
     return BottomNavigationBarItem(
-      icon: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 7.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              _selectedIndex == index ? selectedIcon : icon,
-              height: 20.h,
-                width: 20.w,
-            ),
+      icon: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            _selectedIndex == index ? selectedIcon : icon,
+            height: 20.h,
+              width: 20.w,
+          ),
 
-            if (_selectedIndex == index)
-              Padding(
-                padding:  EdgeInsets.only(top: 2.h),
-                child: CustomTextTwo(text: label,color: AppColors.primaryColor,),
-              ),
-          ],
-        ),
+          if (_selectedIndex == index)
+            CustomTextOne(text: label,color: AppColors.primaryColor,fontSize: 12.sp,),
+        ],
       ),
       label: "",
     );

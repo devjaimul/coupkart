@@ -1,6 +1,7 @@
 import 'package:coup_kart/global_widgets/app_logo.dart';
 import 'package:coup_kart/global_widgets/custom_text_button.dart';
 import 'package:coup_kart/global_widgets/custom_text_field.dart';
+import 'package:coup_kart/helpers/prefs_helper.dart';
 import 'package:coup_kart/routes/exports.dart';
 import 'package:coup_kart/utils/app_constant.dart';
 import 'package:coup_kart/utils/app_icons.dart';
@@ -63,6 +64,7 @@ class EmailPassScreen extends StatelessWidget {
                           text: "Send Otp",
                           onTap: () {
                             if (formKey.currentState?.validate() ?? false) {
+                              PrefsHelper.setString(AppConstants.isLogged, "true");
                               Get.to(OtpVerificationScreen(
                                 isFormForget: true,
                               ));

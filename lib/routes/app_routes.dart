@@ -4,6 +4,8 @@
 
 
 
+import 'package:coup_kart/views/profile/subscription/subscription_screen.dart';
+
 import 'exports.dart';
 class AppRoutes{
   static const String splashScreen = "/SplashScreen";
@@ -14,6 +16,7 @@ class AppRoutes{
   static const String resetPassScreen = "/ResetPassScreen";
   static const String customNavBar = "/CustomNavBar";
   static const String onboardingScreen = "/OnboardingScreen";
+  static const String subscriptionScreen = "/SubscriptionScreen";
 
 
   static List<GetPage> get routes => [
@@ -25,6 +28,7 @@ class AppRoutes{
     GetPage(name: otpVerificationScreen, page: () =>   OtpVerificationScreen()),
     GetPage(name: resetPassScreen, page: () =>   ResetPassScreen()),
     GetPage(name: customNavBar, page: () =>  const CustomNavBar()),
+    GetPage(name: subscriptionScreen, page: () =>  const SubscriptionScreen()),
 
   ];
 }

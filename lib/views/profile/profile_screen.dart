@@ -1,10 +1,14 @@
 
 import 'package:coup_kart/global_widgets/custom_text.dart';
 import 'package:coup_kart/global_widgets/dialog.dart';
+import 'package:coup_kart/helpers/prefs_helper.dart';
 import 'package:coup_kart/routes/app_routes.dart';
 import 'package:coup_kart/utils/app_colors.dart';
+import 'package:coup_kart/utils/app_constant.dart';
 import 'package:coup_kart/utils/app_icons.dart';
 import 'package:coup_kart/views/profile/profile_information.dart';
+import 'package:coup_kart/views/profile/subscription/subscription_screen.dart';
+import 'package:coup_kart/views/profile/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,8 +32,6 @@ appBar: AppBar(),
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: sizeH*.02,
           children: [
-            SizedBox(height: sizeH * .05),
-            // Profile picture
             Container(
         
               height:sizeH*.16,
@@ -69,7 +71,14 @@ appBar: AppBar(),
               icon: Image.asset(AppIcons.subscription,height: 18.h),
               label: 'Subscription',
               onTap: ()  {
-               // await Get.to(()=> const ProfileInformation());
+          Get.to(()=> SubscriptionScreen());
+              },
+            ),
+            _buildProfileOption(
+              icon: Icon(Icons.support_agent,color: AppColors.primaryColor.withOpacity(0.6),),
+              label: 'Support',
+              onTap: ()  {
+                Get.to( ()=>  SupportScreen());
               },
             ),
             _buildProfileOption(
@@ -98,9 +107,10 @@ appBar: AppBar(),
                       onCancel: () {
                     Get.back();
                       },
-                      onConfirm: () {
+                      onConfirm: () async{
                         // Perform logout logic
                        Get.offAllNamed(AppRoutes.signInScreen);
+                       await PrefsHelper.remove(AppConstants.isLogged);
                       },
                     );
                   },

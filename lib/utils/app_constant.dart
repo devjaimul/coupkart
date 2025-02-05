@@ -5,8 +5,9 @@ class AppConstants{
  static String email = 'email';
  static String name = 'name';
  static String image = 'image';
- static String isLogged = 'true';
+ static String isLogged = 'login';
  static String userId = 'id';
+
 
 
   static RegExp emailValidate = RegExp(

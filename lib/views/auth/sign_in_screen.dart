@@ -1,3 +1,4 @@
+import 'package:coup_kart/helpers/prefs_helper.dart';
 import 'package:coup_kart/utils/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:coup_kart/global_widgets/app_logo.dart';
@@ -111,7 +112,7 @@ class SignInScreen extends StatelessWidget {
                       text: "Login",
                       onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
-
+                          PrefsHelper.setString(AppConstants.isLogged, "true");
                           final email = emailTEController.text.trim();
                           final password = passTEController.text.trim();
 

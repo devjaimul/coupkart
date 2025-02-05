@@ -17,6 +17,8 @@ class AppIcons {
   static const String favourite = "$path/favourite.png";
   static const String profile = "$path/navProfile.png";
   static const String profileFill = "$path/navProfileFill.png";
+  static const String couponFill = "$path/couponFill.png";
+  static const String coupon = "$path/coupon.png";
 
 
 

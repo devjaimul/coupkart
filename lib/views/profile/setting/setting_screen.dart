@@ -1,5 +1,7 @@
 
 import 'package:coup_kart/global_widgets/custom_text.dart';
+import 'package:coup_kart/global_widgets/dialog.dart';
+import 'package:coup_kart/routes/app_routes.dart';
 import 'package:coup_kart/utils/app_colors.dart';
 import 'package:coup_kart/views/profile/setting/about_screen.dart';
 import 'package:coup_kart/views/profile/setting/change%20password/change_password.dart';
@@ -55,6 +57,35 @@ class SettingScreen extends StatelessWidget {
                 Get.to(const AboutScreen());
               },
             ),
+            const Spacer(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.h),
+              child:    _buildProfileOption(
+                color: AppColors.primaryColor,
+                icon: Icons.delete,
+                textColor: Colors.white,
+                iconColor: Colors.red,
+                label: 'Delete Account',
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomDialog(
+                      title: "Do you want to delete your account ?",
+                      confirmButtonText: 'Delete',
+                      confirmButtonColor: Colors.red,
+                      onCancel: () {
+                        // Handle Cancel Button Action
+                        Get.back();
+                      },
+                      onConfirm: () {
+                        // Handle Log Out Action
+                        Get.offAllNamed(AppRoutes.signInScreen);
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -65,6 +96,9 @@ class SettingScreen extends StatelessWidget {
   Widget _buildProfileOption({
     required IconData icon,
     required String label,
+    Color? color,
+    Color? textColor,
+    Color? iconColor,
     required VoidCallback onTap,
     Color borderColor = AppColors.primaryColor,
   }) {
@@ -75,18 +109,20 @@ class SettingScreen extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.h),
           decoration: BoxDecoration(
+            color:color,
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(color: borderColor),
           ),
           child: Row(
             children: [
               SizedBox(width: 10.w),
-              Icon(icon, color: AppColors.primaryColor.withOpacity(0.5), size: 20.h),
+              Icon(icon, color:iconColor??  AppColors.primaryColor.withOpacity(0.5), size: 20.h),
               SizedBox(width: 20.w),
-              CustomTextTwo(text: label),
+              CustomTextTwo(text: label,color: textColor,),
               const Spacer(),
-              Icon(Icons.arrow_forward_ios, color: AppColors.primaryColor.withOpacity(0.5 ), size: 18.h),
+              Icon(Icons.arrow_forward_ios, color:AppColors.primaryColor.withOpacity(0.5 ), size: 18.h),
               SizedBox(width: 10.w),
+
             ],
           ),
         ),
