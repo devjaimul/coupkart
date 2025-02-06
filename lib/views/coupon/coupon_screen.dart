@@ -1,5 +1,6 @@
 import 'package:coup_kart/global_widgets/custom_text.dart';
 import 'package:coup_kart/global_widgets/custom_text_button.dart';
+import 'package:coup_kart/global_widgets/dialog.dart';
 import 'package:coup_kart/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,9 +52,31 @@ class CouponScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Flexible(child: CustomTextButton(text: "Staff Member Confirm 🎉", onTap: (){
-                Get.snackbar("Success", "You’ve successfully used the coupon!");
-              },color: Colors.black,)),
+              Flexible(
+                child: CustomTextButton(
+                  text: "Staff Member Confirm 🎉",
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CustomDialog(
+                          title: "Are you sure you want to redeem the coupon?",
+                          confirmButtonText: "Yes, Redeem",
+                          onCancel: () {
+                          Get.back();
+                          },
+                          onConfirm: () {
+                            Get.back();
+                            Get.snackbar("Success", "You’ve successfully used the coupon!");
+                          },
+                        );
+                      },
+                    );
+                  },
+                  color: Colors.black,
+                ),
+              ),
+
             ],
           ),
         ),
