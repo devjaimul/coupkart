@@ -49,28 +49,28 @@ class _DealViewScreenState extends State<DealViewScreen> {
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                  Image(
-                    image: AssetImage("assets/images/deal2.png"),
-                    height: sizeH * .35,
-                    width: double.infinity,
-                    fit: BoxFit.contain,
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    child: Image(
+                      image: AssetImage("assets/images/deal2.png"),
+                      height: sizeH * .35,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizeW * .1),
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          // Toggle the favorite state when clicked
-                          isFavorite = !isFavorite;
-                        });
-                      },
-                      icon: Icon(
-                        isFavorite
-                            ? Icons.favorite
-                            : Icons.favorite_outline, // Change icon based on state
-                        color: AppColors.primaryColor,
-                        size: sizeH * .05,
-                      ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        // Toggle the favorite state when clicked
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    icon: Icon(
+                      isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_outline, // Change icon based on state
+                      color: AppColors.primaryColor,
+                      size: sizeH * .05,
                     ),
                   ),
                 ],
@@ -115,9 +115,10 @@ class _DealViewScreenState extends State<DealViewScreen> {
                 color: AppColors.primaryColor,
                 fontSize: sizeH * .02,
               ),
-              Center(child: CustomTextOne(text: "Redeem 1")),
+              Center(child: CustomTextOne(text: "Redeem 1",fontSize: sizeH*.016,)),
               CustomTextButton(
                 text: "Redeem 🎉",
+                radius: 50,
                 onTap: () {
                   if (widget.isLogged == "true") {
                     print(widget.isLogged);

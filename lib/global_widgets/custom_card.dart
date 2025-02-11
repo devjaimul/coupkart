@@ -43,6 +43,7 @@ class CustomCard extends StatelessWidget {
                 child: Image(
                   image: AssetImage(img),
                   fit: BoxFit.cover,
+                  height: sizeH*.2,
                 )),
             CustomTextOne(
               text: title,

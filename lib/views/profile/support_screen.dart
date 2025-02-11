@@ -36,28 +36,6 @@ class SupportScreen extends StatelessWidget {
 
               InkWell(
                 onTap: () async {
-                  final Uri url = Uri.parse('tel:(609)327-7992');
-                  if (await launchUrl(url)) {
-                    await launchUrl(url);
-                  } else {
-                    debugPrint('Could not launch phone dialer');
-                  }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.phone,
-                      color: AppColors.primaryColor,
-                    ),
-                    SizedBox(width: 10.w),
-                    CustomTextTwo(text: "(609)327-7992"),
-                  ],
-                ),
-              ),
-
-              InkWell(
-                onTap: () async {
                   final Uri emailUrl = Uri(
                     scheme: 'mailto',
                     path: 'jotter@gmail.com',
