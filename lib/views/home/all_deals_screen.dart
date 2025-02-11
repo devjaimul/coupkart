@@ -22,7 +22,7 @@ class AllDealsScreen extends StatelessWidget {
     }
 
     // Adjust aspect ratio based on screen width
-    double aspectRatio = (sizeW < 600) ? 0.7 : (sizeW < 900 ? 0.65 : 0.55);
+    double aspectRatio = (sizeW < 600) ? 0.65 : (sizeW < 900 ? 0.65 : 0.55);
 
     return Scaffold(
       appBar: AppBar(

@@ -49,6 +49,9 @@ dependencies:
   flutter_svg: ^2.0.17
   readmore: ^3.0.0
   url_launcher: ^6.3.1
+  google_maps_flutter: ^2.1.1
+  geolocator: ^9.0.1
+  geocoding: ^2.1.0
 
 
 dev_dependencies:

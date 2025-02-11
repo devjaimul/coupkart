@@ -1,10 +1,11 @@
+import 'package:coup_kart/Controller/exolore/explore_controller.dart';
 import 'package:coup_kart/global_widgets/custom_text.dart';
 import 'package:coup_kart/global_widgets/custom_text_field.dart';
 import 'package:coup_kart/routes/exports.dart';
 import 'package:coup_kart/utils/app_colors.dart';
-import 'package:coup_kart/views/explore/explore_view_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
@@ -13,43 +14,53 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeH = MediaQuery.of(context).size.height;
     final sizeW = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(title: CustomTextOne(text: "Explore"),
-      bottom: PreferredSize(preferredSize: Size.fromHeight(sizeH*.07),
-          child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal:sizeH*.02),
-            child: CustomTextField(controller: TextEditingController(),hintText: "Search For Places",
-            prefixIcon: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: sizeW*.02),
-              child: Icon(Icons.search,color: AppColors.primaryColor,),
-            ),
-            ),
-          )),
-      ),
-      body: Padding(
-        padding:  EdgeInsets.all(sizeH*.02),
-        child: Column(
-          spacing: sizeH*.01,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              spacing: sizeW*.01,
-              children: [
-                Icon(Icons.location_pin,color: AppColors.primaryColor,),
-                CustomTextOne(text: "Trending Places"),
-              ],
-            ),
-            SizedBox(height: sizeH*.01,),
-            InkWell(onTap: (){Get.to(()=>ExploreViewScreen());}, child: CustomTextTwo(text: "Cayman Brac ",color: AppColors.primaryColor,)),
-            InkWell(onTap: (){Get.to(()=>ExploreViewScreen());}, child: CustomTextTwo(text: "Cayman Brac ",color: AppColors.primaryColor,)),
-            InkWell(onTap: (){Get.to(()=>ExploreViewScreen());}, child: CustomTextTwo(text: "Cayman Brac ",color: AppColors.primaryColor,)),
-            InkWell(onTap: (){Get.to(()=>ExploreViewScreen());}, child: CustomTextTwo(text: "Cayman Brac ",color: AppColors.primaryColor,)),
-            InkWell(onTap: (){Get.to(()=>ExploreViewScreen());}, child: CustomTextTwo(text: "Cayman Brac ",color: AppColors.primaryColor,)),
+    final ExploreController controller = Get.put(ExploreController());
+    final TextEditingController searchTEController=TextEditingController();
 
+    return Scaffold(
+      appBar: AppBar(
+        title: CustomTextOne(text: "Explore"),
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Google Map
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(23.759287273526724, 90.42894329783785),
+                zoom: 14.0,
+              ),
+              markers: controller.markers.value,  // Display markers
+              myLocationEnabled: true,
+              onMapCreated: (GoogleMapController mapController) {
+                controller.mapController.complete(mapController);
+              },
+              onCameraMove: (position) {
+                controller.updateCameraPosition(position.target);
+              },
+            ),
+
+            // Search Bar
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: sizeH * .02, vertical: sizeH * .02),
+              child: CustomTextField(
+                controller: searchTEController,
+                hintText: "Search For Places",
+                validator: (value) {},
+                filColor: Colors.white,
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.search, color: AppColors.primaryColor),
+                  onPressed: () {
+
+                    String query = searchTEController.text;
+                    controller.searchLocation(query);
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
-
     );
   }
 }
