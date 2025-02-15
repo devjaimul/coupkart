@@ -165,34 +165,35 @@ class _DealViewScreenState extends State<DealViewScreen> {
           ),
           child: Column(
             children: [
-              Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Container(
-                      padding: EdgeInsets.all(sizeH * .03),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(24),
-                              bottomLeft: Radius.circular(24),
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40))),
-                      child: SvgPicture.asset(
+              Container(
+                  padding: EdgeInsets.all(sizeH * .03),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.only(
+                          // bottomRight: Radius.circular(8),
+                          // bottomLeft: Radius.circular(8),
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8))),
+                  child: Row(
+                    mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+                    children: [
+                      SvgPicture.asset(
                         AppImages.appLogo,
-                        height: sizeH * .08,
-                      )),
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Image(
-                      image: AssetImage(AppImages.close),
-                      height: sizeH * .05,
-                    ),
-                  )
-                ],
-              ),
+                        height: sizeH * .05,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Image(
+                          image: AssetImage(AppImages.close),
+                          height: sizeH * .05,
+                        ),
+                      ),
+                    ],
+                  )),
+
               Padding(
                 padding: EdgeInsets.all(sizeH * .016),
                 child: Column(

@@ -32,18 +32,32 @@ appBar: AppBar(),
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: sizeH*.02,
           children: [
-            Container(
-        
-              height:sizeH*.16,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.primaryColor,
-                  width: 2.w,
-                ),
-              ),
-              child: Center(child: CustomTextOne(text: "\$48.50",color: AppColors.primaryColor,fontSize: sizeH*.03,))
+            Stack(
+              fit: StackFit.loose,
+              children: [
+                Image.asset("assets/images/proicon.png",width: 140.w,height: 140.h,),
+                Positioned(
+                    top: 55.h,
+                    right: 35.w,
+                    child: CustomTextOne(text: "\$48.50",color: Colors.white,fontSize: sizeH*.03,))
+              ],
             ),
+            // Container(
+            //
+            //   height:sizeH*.16,
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     border: Border.all(
+            //       color: AppColors.primaryColor,
+            //       width: 2.w,
+            //     ),
+            //   ),
+            //   child: CircleAvatar(
+            //       radius: sizeH*.1,
+            //       backgroundColor: Colors.transparent,
+            //
+            //       child: Center(child: CustomTextOne(text: "\$48.50",color: AppColors.primaryColor,fontSize: sizeH*.03,)))
+            // ),
         
             SizedBox(height: sizeH * .01),
             // Name
