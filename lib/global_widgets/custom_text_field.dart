@@ -22,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final FormFieldValidator? validator;
   final bool isPassword;
+  final List<String>? autofillHints;
   final bool? isEmail;
   final bool? readOnly;
   final double? borderRadio;
@@ -52,7 +53,7 @@ class CustomTextField extends StatefulWidget {
     this.readOnly = false,
     this.borderRadio,
     this.onTap,
-    this.onChanged, this.validationHeight,
+    this.onChanged, this.validationHeight, this.autofillHints,
   });
 
   @override
@@ -79,6 +80,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           widget.onChanged!(value.isEmpty ? '' : value);
         }
       },
+      autofillHints: widget.autofillHints,
       onTap: widget.onTap,
       readOnly: widget.readOnly ?? false,
       controller: widget.controller,

@@ -7,6 +7,7 @@ import 'package:coup_kart/global_widgets/custom_text_button.dart';
 import 'package:coup_kart/global_widgets/custom_text_field.dart';
 import 'package:coup_kart/routes/app_routes.dart';
 import 'package:coup_kart/utils/app_icons.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -41,6 +42,7 @@ class SignInScreen extends StatelessWidget {
                         text: "Welcome Back! Please enter your details."),
                     CustomTextField(
                       controller: emailTEController,
+                      autofillHints: const [AutofillHints.email],
                       hintText: "Enter E-mail",
                       isEmail: true,
                       prefixIcon: Padding(
@@ -62,6 +64,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                     CustomTextField(
                       controller: passTEController,
+                      autofillHints: const [AutofillHints.password],
                       hintText: "Enter Password",
                       isPassword: true,
                       prefixIcon: Padding(
@@ -113,6 +116,7 @@ class SignInScreen extends StatelessWidget {
                       onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
                           PrefsHelper.setString(AppConstants.isLogged, "true");
+                          TextInput.finishAutofillContext();
                           final email = emailTEController.text.trim();
                           final password = passTEController.text.trim();
 
