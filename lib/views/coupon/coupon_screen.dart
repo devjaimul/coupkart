@@ -83,6 +83,7 @@ class _CouponScreenState extends State<CouponScreen> {
     );
   }
 
+
   void verifyCoupon() {
     showDialog(
       context: context,
